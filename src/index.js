@@ -1,12 +1,9 @@
-const state = { images: [], comments: [] };
+const state = { images: [] };
 
 const imageContainer = document.querySelector(".image-container");
 
 function getImages() {
 	return fetch("http://localhost:3000/images").then((response) => response.json());
-}
-function getComments() {
-	return fetch("http://localhost:3000/comments").then((response) => response.json());
 }
 
 getImages().then((imagesFromServer) => {
@@ -43,10 +40,12 @@ function renderImages() {
 
 		const commentsList = document.createElement("ul");
 		commentsList.setAttribute("class", "comments");
-		getComments().then((commentsFromServer) => {
-			state.comments = commentsFromServer;
-			renderComments(commentsList, image.id);
-		});
+
+		for (const comment of image.comments) {
+			const liEl = document.createElement("li");
+			liEl.textContent = comment.content;
+			commentsList.append(liEl);
+		}
 
 		imageCardEl.append(titleEl, imgEl, likesSection, commentsList);
 
@@ -54,10 +53,4 @@ function renderImages() {
 	}
 }
 
-function renderComments(commentsList, targetImageId) {
-	for (const comment of state.comments.filter((comment) => comment.imageId === targetImageId)) {
-		const liEl = document.createElement("li");
-		liEl.textContent = comment.content;
-		commentsList.append(liEl);
-	}
-}
+// function renderComments(commentsList, targetImageId) {}
