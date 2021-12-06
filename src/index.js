@@ -11,7 +11,6 @@ function getComments() {
 
 getImages().then((imagesFromServer) => {
 	state.images = imagesFromServer;
-	console.log(imagesFromServer);
 	renderImages();
 });
 
