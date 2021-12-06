@@ -52,5 +52,3 @@ function renderImages() {
 		imageContainer.append(imageCardEl);
 	}
 }
-
-// function renderComments(commentsList, targetImageId) {}
