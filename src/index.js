@@ -30,7 +30,7 @@ function renderImages() {
 
 		const likesEl = document.createElement("span");
 		likesEl.setAttribute("class", "likes");
-		likesEl.textContent = image.likes;
+		likesEl.textContent = image.likes + " likes";
 
 		const likeBtn = document.createElement("button");
 		likeBtn.setAttribute("class", "like-button");
